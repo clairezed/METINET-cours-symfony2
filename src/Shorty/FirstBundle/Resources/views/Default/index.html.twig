@@ -1,1 +1,15 @@
-Hello {{ name }}!
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="container">
+	<h1>
+		Hello !
+	</h1>
+	<div >
+		<a href="{{path('shorten')}}" class="btn btn-primary"> Shorten your url in a unique form ! </a>
+	</div>
+	
+
+</div>
+
+{% endblock %}

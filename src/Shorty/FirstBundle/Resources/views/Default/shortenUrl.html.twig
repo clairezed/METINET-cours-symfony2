@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<div class="container">
+	<h1>
+		Hello again !
+	</h1>
+	<form action="{{path('shorten')}}" method="post" {{ form_enctype(form) }}>
+			{{form_errors(form)}}
+			<div>
+				{{form_label(form.url)}}
+				{{form_errors(form.url)}}
+				{{form_widget(form.url)}}
+			</div>
+			<input type="submit" class="btn btn-primary"/>
+			{{form_rest(form)}}
+	</form>
+	{% if url is defined %}
+	<p> Merci de vouloir raccourcir {{url}}, gros ! </p>
+	{% endif %}
+	<div >
+		<a href="{{path('home')}}" class="btn btn-default pull-right"> Back to basics ! </a>
+	</div>
+
+</div>
+
+{% endblock %}

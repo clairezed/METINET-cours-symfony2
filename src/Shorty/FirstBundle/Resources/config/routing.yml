@@ -1,3 +1,3 @@
 shorty_first_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: ShortyFirstBundle:Default:index }
+    resource: "@ShortyFirstBundle/Controller/DefaultController.php"
+    type: annotation
