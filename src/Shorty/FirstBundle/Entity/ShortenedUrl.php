@@ -4,47 +4,91 @@ namespace Shorty\FirstBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+/**
+ * ShortenedUrl
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class ShortenedUrl
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
-class ShortenedUrl {
-	/**
-	* @var integer
-	*/
-	private $id;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="original_url", type="string", length=255)
+     */
+    private $originalUrl;
 
-	/**
-	* @var string
-	*/
-	private $original_url;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
 
-	/**
-	* @var string
-	*/
-	private $slug;
 
-	public function getId(){
-		return $this->id;
-	}
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	public function getOriginalUrl(){
-		return $this->original_url;
-	}
+    /**
+     * Set originalUrl
+     *
+     * @param string $originalUrl
+     * @return ShortenedUrl
+     */
+    public function setOriginalUrl($originalUrl)
+    {
+        $this->originalUrl = $originalUrl;
 
-	public function getSlug(){
-		return $this->slug;
-	}
+        return $this;
+    }
 
-	public function setId($id){
-		$this->id = $id;
-		return $this;
-	}
+    /**
+     * Get originalUrl
+     *
+     * @return string 
+     */
+    public function getOriginalUrl()
+    {
+        return $this->originalUrl;
+    }
 
-	public function setOriginalUrl($original_url){
-		$this->original_url = $original_url;
-		return $this;
-	}
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return ShortenedUrl
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
-	public function setSlug($slug){
-		$this->slug = $slug;
-		return $this;
-	}
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 }

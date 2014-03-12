@@ -3,7 +3,7 @@
 	 xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
 
 	<class name="Shorty\FirstBundle\Entity\ShortenedUrl">
-		<property name="original_url">
+		<property name="originalUrl">
 			<constraint name="NotBlank"/>
 			<constraint name="Url" />
 		</property>

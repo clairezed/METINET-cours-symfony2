@@ -6,9 +6,7 @@
 	<h1>
 		Wesh gros !
 	</h1>
-	{% if original_url is defined %}
-		<p> Merci de vouloir raccourcir {{original_url}}, gros ! </p>
-	{% endif %}
+	<p> Merci d'avoir raccourci {{entity.originalUrl}} en {{entity.slug}} ! </p>
 </div>
 
 {% endblock %}

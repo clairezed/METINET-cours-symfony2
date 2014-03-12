@@ -11,7 +11,7 @@ class ShortenedUrlType extends AbstractType{
 
 	public function buildForm(FormBuilderInterface $builder, array $options){
 		$builder
-			->add('original_url', 'text', array(
+			->add('originalUrl', 'text', array(
 				'required'=>false))
 			->add('slug', 'text', array(
 				'required'=>false));

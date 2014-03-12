@@ -11,10 +11,10 @@
 	<form class="form-horizontal" action="{{path('shorten')}}" method="post" {{ form_enctype(form) }}>
 			{{form_errors(form)}}
 			<div class="form-group">
-				{{form_label(form.original_url)}}
+				{{form_label(form.originalUrl)}}
 				<div class="col-sm-9">
-				{{form_errors(form.original_url)}}
-				{{form_widget(form.original_url)}}
+				{{form_errors(form.originalUrl)}}
+				{{form_widget(form.originalUrl)}}
 				</div>
 			</div>
 			<div class="form-group">

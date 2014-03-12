@@ -24,8 +24,10 @@ class DefaultController extends Controller
     */
     public function indexAction()
     {
-        $form = $this->createForm(new ShortenedUrlType());
-        return array('form' => $form->createView());
+        // $em = $this->getDoctrine()->getManager();
+        // $urls = $em->getRepository('ShortyFirstBundle:ShortenedUrl')->findAll();
+
+        return array('truc' => 'truc');
     }
 
     /**
@@ -40,35 +42,34 @@ class DefaultController extends Controller
 
     	if($form->isValid()){
             if($entity->getSlug() == null){
-                $slugGenerator = $this->get('slug_generator_md5');
-                // $slugGenerator = new HashSlugGenerator(new Md5());
+                $slugGenerator = $this->get('slug_generator');
                 $slug = $slugGenerator->generateSlug($entity->getOriginalUrl());
                 $entity->setSlug($slug);
             }
-            $original_url = $form['original_url']->getData();
-    		$slug =  $entity->getSlug();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+    		// $slug =  $entity->getSlug();
 
-            return array('form' => $form->createView(), 'slug'=> $slug);
-
-    		// return $this->redirect($this->generateUrl('success', 
-      //           array('entity' => $entity)
-      //           ));
+    		return $this->redirect($this->generateUrl('success', 
+                array('id' => $entity->getId())
+                ));
     	}
 
         return array('form' => $form->createView());
     }
 
     /**
-    *@Route("/success/{$id}", name="success")
+    *@Route("/success/{id}", name="success")
     *@Method({"GET", "POST"})
     *@Template()
     */
     public function shortenSuccessAction(ShortenedUrl $entity){
-        $newEntity = $entity;
-        var_dump($newEntity);
-        exit;
+        // $newEntity = $entity;
+        // var_dump($newEntity);
+        // exit;
 
-        // return array('form' => $form->createView());
+        return array('entity' => $entity);
     }
 
 }
