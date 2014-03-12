@@ -24,10 +24,12 @@ class DefaultController extends Controller
     */
     public function indexAction()
     {
-        // $em = $this->getDoctrine()->getManager();
-        // $urls = $em->getRepository('ShortyFirstBundle:ShortenedUrl')->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $urls = $em->getRepository('ShortyFirstBundle:ShortenedUrl')->findAll();
 
-        return array('truc' => 'truc');
+        return array(
+            'urls' => $urls
+            );
     }
 
     /**

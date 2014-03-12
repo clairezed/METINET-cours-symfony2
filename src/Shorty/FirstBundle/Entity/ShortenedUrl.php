@@ -6,32 +6,21 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * ShortenedUrl
- *
- * @ORM\Table()
- * @ORM\Entity
  */
 class ShortenedUrl
 {
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="original_url", type="string", length=255)
      */
     private $originalUrl;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
 
@@ -77,7 +66,9 @@ class ShortenedUrl
      */
     public function setSlug($slug)
     {
-        $this->slug = $slug;
+        $newSlug = strtolower(preg_replace("![^a-z0-9]+!i", "-", $slug));
+
+        $this->slug = $newSlug;
 
         return $this;
     }

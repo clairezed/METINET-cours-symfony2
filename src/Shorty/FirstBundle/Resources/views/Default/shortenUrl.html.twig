@@ -28,13 +28,6 @@
 			<input type="submit" class="btn btn-primary col-sm-offset-2"/>
 			{{form_rest(form)}}
 	</form>
-	{% if slug is defined %}
-	<p> Merci de vouloir raccourcir {{slug}}, gros ! </p>
-	{% endif %}
-	<div >
-		<a href="{{path('home')}}" class="btn btn-default pull-right"> Back to basics ! </a>
-	</div>
-
 </div>
 
 {% endblock %}

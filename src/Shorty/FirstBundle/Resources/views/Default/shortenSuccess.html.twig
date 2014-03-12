@@ -6,7 +6,11 @@
 	<h1>
 		Wesh gros !
 	</h1>
-	<p> Merci d'avoir raccourci {{entity.originalUrl}} en {{entity.slug}} ! </p>
+	<p> Merci d'avoir raccourci <br><span class="highlight">{{entity.originalUrl}}</span> <br> en <br><span class="highlight">{{entity.slug}}</span> ! </p>
+	<div >
+		<a href="{{path('home')}}" class="btn btn-default pull-right"> Back to homepage ! </a>
+	</div>
 </div>
+
 
 {% endblock %}
