@@ -1,22 +1,35 @@
 {% extends '::base.html.twig' %}
+{% if form is defined %}
+   {% form_theme form 'ShortyFirstBundle:Form:fields.html.twig' %}
+{% endif %} 
 
 {% block body %}
 <div class="container">
 	<h1>
 		Hello again !
 	</h1>
-	<form action="{{path('shorten')}}" method="post" {{ form_enctype(form) }}>
+	<form class="form-horizontal" action="{{path('shorten')}}" method="post" {{ form_enctype(form) }}>
 			{{form_errors(form)}}
-			<div>
-				{{form_label(form.url)}}
-				{{form_errors(form.url)}}
-				{{form_widget(form.url)}}
+			<div class="form-group">
+				{{form_label(form.original_url)}}
+				<div class="col-sm-9">
+				{{form_errors(form.original_url)}}
+				{{form_widget(form.original_url)}}
+				</div>
 			</div>
-			<input type="submit" class="btn btn-primary"/>
+			<div class="form-group">
+				{{form_label(form.slug)}}
+				
+				<div class="col-sm-9">
+				{{form_errors(form.slug)}}
+				{{form_widget(form.slug)}}
+				</div>
+			</div>
+			<input type="submit" class="btn btn-primary col-sm-offset-2"/>
 			{{form_rest(form)}}
 	</form>
-	{% if url is defined %}
-	<p> Merci de vouloir raccourcir {{url}}, gros ! </p>
+	{% if slug is defined %}
+	<p> Merci de vouloir raccourcir {{slug}}, gros ! </p>
 	{% endif %}
 	<div >
 		<a href="{{path('home')}}" class="btn btn-default pull-right"> Back to basics ! </a>
