@@ -6,5 +6,7 @@
     </id>
     <field name="originalUrl" type="string" column="original_url" length="255"/>
     <field name="slug" type="string" column="slug" length="255"/>
+    <field name="createdAt" type="datetime" column="created_at" />
+    <field name="nbClicks" type="integer" column="nb_clicks" nullable="true" />
   </entity>
 </doctrine-mapping>

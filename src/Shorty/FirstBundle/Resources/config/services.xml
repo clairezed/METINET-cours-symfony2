@@ -16,5 +16,8 @@
 		</service>
 		<service id="md5" class="Shorty\FirstBundle\Service\Md5">
 		</service>
+		<service id="shortened_url_repository" class="Shorty\FirstBundle\Repository\ShortenedUrlRepository">
+			<argument type="service" id="doctrine.orm.entity_manager" />
+		</service>
 	</services> 
 </container>

@@ -24,8 +24,9 @@ class DefaultController extends Controller
     */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-        $urls = $em->getRepository('ShortyFirstBundle:ShortenedUrl')->findAll();
+        $shortenedUrlRepository = $this->get('shortened_url_repository');
+
+        $urls = $shortenedUrlRepository->findLatestShortenedUrl(5);
 
         return array(
             'urls' => $urls
@@ -48,10 +49,12 @@ class DefaultController extends Controller
                 $slug = $slugGenerator->generateSlug($entity->getOriginalUrl());
                 $entity->setSlug($slug);
             }
+            $entity->setCreatedAt();
+            $entity->setNbClicks(0);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-    		// $slug =  $entity->getSlug();
 
     		return $this->redirect($this->generateUrl('success', 
                 array('id' => $entity->getId())
@@ -63,15 +66,32 @@ class DefaultController extends Controller
 
     /**
     *@Route("/success/{id}", name="success")
-    *@Method({"GET", "POST"})
+    *@Method({"GET"})
     *@Template()
     */
     public function shortenSuccessAction(ShortenedUrl $entity){
-        // $newEntity = $entity;
-        // var_dump($newEntity);
+        return array('entity' => $entity);
+    }
+
+    /**
+    *@Route("/r/{slug}", name="redirect_to_slug")
+    *@Method({"GET"})
+    */
+    public function redirectToSlugUrl($slug){
+
+        $shortenedUrlRepository = $this->get('shortened_url_repository');
+        $entity = $shortenedUrlRepository->findShortenedUrlBySlug($slug);
+
+        // \Doctrine\Common\Util\Debug::dump($entity);
         // exit;
 
-        return array('entity' => $entity);
+        // nb clicks à incrémenter
+        $entity->setNbClicks($entity->getNbClicks() + 1);
+        $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+        return $this->redirect($entity->getOriginalUrl());
     }
 
 }

@@ -92,27 +92,4 @@ class ShortenedUrl
     {
         return $this->slug;
     }
-
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt()
-    {
-        $this->createdAt = new \Datetime();
-        return $this;
-    }
-
-    public function getNbClicks()
-    {
-        return $this->nbClicks;
-    }
-
-    public function setNbClicks($nbClicks)
-    {
-        $this->nbClicks = $nbClicks;
-
-        return $this;
-    }
 }

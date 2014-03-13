@@ -12,12 +12,14 @@
 </div>
 
 <div class="container">
-	<h2> Shortened Urls List</h2>
+	<h2> Latest Shortened Urls List</h2>
 	<table class="table">
 		<thead>
 		<tr>
 		<th> Original Url </th>
 		<th> Shortened Url </th>
+		<th> Created at </th>
+		<th> Number of clicks </th>
 		</tr>
 		</thead>
 		<tbody>
@@ -25,7 +27,9 @@
 			{% for url in urls %}
 			<tr>
 			<td>{{url.originalUrl}}</td>
-			<td><a href="{{url.originalUrl}}" >{{url.slug}}</a></td>
+			<td><a href="{{path('redirect_to_slug', {slug: url.slug})}}" >{{url.slug}}</a></td>
+			<td>{{url.createdAt | date('d/m/Y H:i')}}</td>
+			<td>{{url.nbClicks}}</td>
 			</tr>
 			{% endfor %}
 			
